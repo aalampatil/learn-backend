@@ -14,3 +14,7 @@ a project setup is done before to avoid some problems during devlopement phase,
 -use try/catch and async await while connecting to database
 
 -give proper error name, so it is easier to debug later and save some time.
+
+-async fn technically returns a promise.
+
+-configure cors and cookie-parser
