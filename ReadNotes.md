@@ -18,3 +18,11 @@ a project setup is done before to avoid some problems during devlopement phase,
 -async fn technically returns a promise.
 
 -configure cors and cookie-parser
+
+-mongoose middleware (pre)
+
+-our own methods can be created by using schemaName.methods.methodName,
+
+-jwt is a bearer token(key, anyone can use your key if you lost it)
+
+-access token and refresh token
