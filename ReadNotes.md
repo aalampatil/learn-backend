@@ -26,3 +26,11 @@ a project setup is done before to avoid some problems during devlopement phase,
 -jwt is a bearer token(key, anyone can use your key if you lost it)
 
 -access token and refresh token
+
+-configured cloudinary for uploading files (handled both cases a successful upload and failed to upload)
+
+-used node fileSystem(read more)
+
+-configured multer to store files temporarily on the server before uploading it on the cloudinary,this gives us the local file path, which will be used to upload the file in cloudinary and then the same will be used to unlink
+
+-70% of the setup is done
