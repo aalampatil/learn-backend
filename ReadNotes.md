@@ -34,3 +34,13 @@ a project setup is done before to avoid some problems during devlopement phase,
 -configured multer to store files temporarily on the server before uploading it on the cloudinary,this gives us the local file path, which will be used to upload the file in cloudinary and then the same will be used to unlink
 
 -70% of the setup is done
+
+-route 
+
+in app.js - declare routes
+app.use("api/v1/users",userRouter) //when user route hits,this pass on the control to userRouter then,
+//http://localhost:8000.api/vi/users
+
+in user.router.js - router
+router.route("/register").post(registerUser) // userRouter moves to registe which calls the registerUser controller 
+//http://localhost:8000.api/vi/users/register - user registered
