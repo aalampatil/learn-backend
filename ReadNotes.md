@@ -81,8 +81,8 @@ router.route("/register").post(registerUser) // userRouter moves to registe whic
   secure_url: 'https://res.cloudinary.com/dgvo6ulfd/image/upload/v1753380271/ahwq0iq2ejmbvfucewrm.jpg',
   asset_folder: '',
   display_name: 'ahwq0iq2ejmbvfucewrm',
-  original_filename: 'pexels-kqpho-1583582',
-  api_key: '923837282266661'
+  original_filename: '',
+  api_key: ''
 }
 
 - use same name for collection and environmnet ib postman
