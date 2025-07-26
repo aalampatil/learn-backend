@@ -86,3 +86,5 @@ router.route("/register").post(registerUser) // userRouter moves to registe whic
 }
 
 - use same name for collection and environmnet ib postman
+-when sending form data use multer,only multer can parse form data while using postman
+-only json data can be passed on without multer
