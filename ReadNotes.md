@@ -88,3 +88,17 @@ router.route("/register").post(registerUser) // userRouter moves to registe whic
 - use same name for collection and environmnet ib postman
 -when sending form data use multer,only multer can parse form data while using postman
 -only json data can be passed on without multer
+
+*** mongodb findOne $or ***
+-either pass only one varibale, because or can result in error
+Why undefined or empty values break it
+In MongoDB:
+{ username: undefined } doesn't mean "do nothing" — it can match documents missing the field or with null values.
+If your $or clause has one condition that is always true (like an empty object {}), then any user could match.
+This is why user1@user.com ends up matching a completely different user, like user1@email.com.
+
+*** better use one findOne({email}) or findOne({username}) // it can be used but as of now i am getting error ***
+
+*** missing await can cause misleading error, add await when making calls to db and where the req can take time ***
+
+*** check what are you accessing using (.) and from where you are accessing, like req.body or req.user ***
