@@ -2,7 +2,10 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import {
+  deleteFromCloudinary,
+  uploadOnCloudinary,
+} from "../utils/cloudinary.js";
 import jwt from "jsonwebtoken";
 
 //access and refresh token generation
@@ -57,6 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const avatarLocalPath = req.files?.avatar[0]?.path;
   //const coverImageLocalPath = req.files?.coverImage[0]?.path;
+
   let coverImageLocalPath;
 
   if (
@@ -64,7 +68,7 @@ const registerUser = asyncHandler(async (req, res) => {
     Array.isArray(req.files.coverImage) &&
     req.files.coverImage.length > 0
   ) {
-    coverImageLocalPath = req.files.coverImage[0].path;
+    coverImageLocalPath = req.files.coverImage[0]?.path;
   }
 
   if (!avatarLocalPath) {
@@ -81,7 +85,9 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     fullName,
     avatar: avatar.url,
+    avatarPublicId: avatar.public_id,
     coverImage: coverImage.url || "",
+    coverImagePublicId: coverImage.public_id || "",
     username: username.toLowerCase(),
     email,
     password,
@@ -291,6 +297,11 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     throw new ApiError(400, "avatar is required");
   }
 
+  //console.log("avatar public id", req.user?.avatarPublicId);
+  // Delete old avatar from Cloudinary using stored public_id
+  await deleteFromCloudinary(req.user?.avatarPublicId);
+  
+
   const newAvatar = await uploadOnCloudinary(avatarLocalPath);
 
   if (!newAvatar.url) {
@@ -302,6 +313,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     {
       $set: {
         avatar: newAvatar?.url,
+        avatarPublicId: newAvatar?.public_id,
       },
     },
     { new: true }
@@ -318,9 +330,13 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
   if (!coverImageLocalPath) {
     throw new ApiError(400, "coverImage is required");
   }
+  
+  //console.log("public id", req.user?.coverImagePublicId);
+  
+  await deleteFromCloudinary(req.user?.coverImagePublicId);
 
-  const newCoverImage = uploadOnCloudinary(coverImageLocalPath);
-
+  const newCoverImage = await uploadOnCloudinary(coverImageLocalPath);
+  
   if (!newCoverImage.url) {
     throw new ApiError(
       500,
@@ -333,6 +349,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
     {
       $set: {
         coverImage: newCoverImage?.url,
+        coverImagePublicId: newCoverImage?.public_id
       },
     },
     { new: true }
@@ -352,5 +369,5 @@ export {
   getCurrentUser,
   updateAccountDetails,
   updateUserAvatar,
-  updateUserCoverImage
+  updateUserCoverImage,
 };

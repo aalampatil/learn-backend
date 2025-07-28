@@ -29,8 +29,16 @@ const userSchema = new Schema(
       type: String, //cloudinary url
       required: true,
     },
+    //adding avatar public id to delete when updated to new one
+    avatarPublicId:{
+       type: String,
+       required: true
+    },
     coverImage: {
       type: String,
+    },
+    coverImagePublicId:{
+       type: String,
     },
     watchHistory: [
       {
