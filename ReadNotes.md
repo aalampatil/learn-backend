@@ -102,3 +102,44 @@ This is why user1@user.com ends up matching a completely different user, like us
 *** missing await can cause misleading error, add await when making calls to db and where the req can take time ***
 
 *** check what are you accessing using (.) and from where you are accessing, like req.body or req.user ***
+
+-cloudinary response when uploaded a video file,
+{
+  asset_id: 'c626b6ab8ed8a841a353953214088475',
+  public_id: 'kpentks3yf1fjsgrp7qi',
+  version: 1753869614,
+  version_id: '8e42c90a5b7909a31ba38b333f763345',
+  signature: 'ad38635b5132032fc4ac445d148cf5b7c9e084e8',
+  width: 2160,
+  height: 3840,
+  format: 'mp4',
+  resource_type: 'video',
+  created_at: '2025-07-30T10:00:14Z',
+  tags: [],
+  pages: 0,
+  bytes: 54684101,
+  type: 'upload',
+  etag: '354ec656a43201fb7e6a96588647b7c2',
+  placeholder: false,
+  url: 'http://res.cloudinary.com/dgvo6ulfd/video/upload/v1753869614/kpentks3yf1fjsgrp7qi.mp4',
+  secure_url: 'https://res.cloudinary.com/dgvo6ulfd/video/upload/v1753869614/kpentks3yf1fjsgrp7qi.mp4',
+  playback_url: 'https://res.cloudinary.com/dgvo6ulfd/video/upload/sp_auto/v1753869614/kpentks3yf1fjsgrp7qi.m3u8',
+  asset_folder: '',
+  display_name: 'kpentks3yf1fjsgrp7qi',
+  audio: {},
+  video: {
+    pix_format: 'yuv420p',
+    codec: 'h264',
+    level: 52,
+    profile: 'High',
+    bit_rate: '18892935',
+    dar: '9:16',
+    time_base: '1/15360'
+  },
+  frame_rate: 60,
+  bit_rate: 18897313,
+  duration: 23.15,
+  rotation: 0,
+  original_filename: '14110589_2160_3840_60fps',
+  api_key: '923837282266661'
+}
