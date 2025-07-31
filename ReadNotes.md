@@ -143,3 +143,14 @@ This is why user1@user.com ends up matching a completely different user, like us
   original_filename: '14110589_2160_3840_60fps',
   api_key: '923837282266661'
 }
+
+
+***************************************************************************
+| Type            | Example URL                | How to access in Express |
+| --------------- | -------------------------- | ------------------------ |
+| **Route param** | `/videos/6889...`          | `req.params.videoId`     |
+| **Query param** | `/videos/?videoId=6889...` | `req.query.videoId`      |
+
+router.route("/:videoId).get(getVideoById) = GET /videos/****6889efa2fb88ac3cf50bd95e*** this part is /:videoId a dynamicId which wasted my 3 hrs
+
+***************************************************************************
