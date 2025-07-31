@@ -154,3 +154,5 @@ This is why user1@user.com ends up matching a completely different user, like us
 router.route("/:videoId).get(getVideoById) = GET /videos/****6889efa2fb88ac3cf50bd95e*** this part is /:videoId a dynamicId which wasted my 3 hrs
 
 ***************************************************************************
+
+getAllVideos controller can be enhanced by adding count of video, null check for videos, index and cahing ? will read more about this

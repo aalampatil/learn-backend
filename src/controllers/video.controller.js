@@ -9,7 +9,9 @@ import {
   uploadOnCloudinary,
 } from "../utils/cloudinary.js";
 
-/*const getAllVideos = asyncHandler(async (req, res) => {
+//get All video
+
+const getAllVideos = asyncHandler(async (req, res) => {
   const {
     page = 1,
     limit = 10,
@@ -20,11 +22,11 @@ import {
   } = req.query;
 
   if (!req.user) {
-    throw new ApiError(401, "User needs to be logged in");
+    throw new ApiError(400, "login required");
   }
 
   const match = {
-    ...(query ? { title: { $regex: query, $option: "i" } } : {}),
+    ...(query ? { title: { $regex: query, $options: "i" } } : {}),
     ...(userId ? { owner: mongoose.Types.ObjectId(userId) } : {}),
   };
 
@@ -34,10 +36,11 @@ import {
     },
     {
       $lookup: {
-        from: "users",
-        localField: "owner",
-        foreignField: "_id",
-        as: "videosByOwner",
+        //talash karo, kahan ?
+        from: "users", // isme talash karo,
+        localField: "owner", // "owner ki talash karo users mein"
+        foreignField: "_id", // "id ke naam se milega users mein"
+        as: "videosByOwner", // dhundh ke is naam ke dabbe mein daal do
       },
     },
     {
@@ -50,7 +53,7 @@ import {
         views: 1,
         isPublished: 1,
         owner: {
-          $arrayElemAt: ["$videosByOwner", 0],
+          $arrayElemAt: ["videosByOwner", 0],
         },
       },
     },
@@ -68,14 +71,13 @@ import {
   ]);
 
   if (!videos?.length) {
-    throw new ApiError(404, "videos not found");
+    throw new ApiError(404, "video not found");
   }
 
   return res
     .status(200)
     .json(new ApiResponse(200, videos, "videos fetched successfully"));
 });
-*/
 
 //publish video
 const publishVideo = asyncHandler(async (req, res) => {
@@ -250,10 +252,10 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
 });
 
 export {
-  //getAllVideos,
+  getAllVideos,
   publishVideo,
   getVideoById,
   updateVideo,
   deleteVideo,
-  togglePublishStatus
+  togglePublishStatus,
 };

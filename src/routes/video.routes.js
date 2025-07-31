@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   deleteVideo,
-  //getAllVideos,
+  getAllVideos,
   getVideoById,
   publishVideo,
   togglePublishStatus,
@@ -16,7 +16,7 @@ router.use(verifyJWT);
 
 router
   .route("/")
-  //.get(getAllVideos)
+  .get(getAllVideos)
   .post(
     upload.fields([
       { name: "videoFile", maxCount: 1 },
@@ -31,6 +31,6 @@ router
   .patch(upload.single("thumbnail"), updateVideo)
   .delete(deleteVideo);
 
-  router.route("/toggle/publish/:videoId").patch(togglePublishStatus)
+router.route("/toggle/publish/:videoId").patch(togglePublishStatus);
 
 export default router;
