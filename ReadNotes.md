@@ -155,4 +155,8 @@ router.route("/:videoId).get(getVideoById) = GET /videos/****6889efa2fb88ac3cf50
 
 ***************************************************************************
 
-getAllVideos controller can be enhanced by adding count of video, null check for videos, index and cahing ? will read more about this
+-getAllVideos controller can be enhanced by adding count of video, null check for videos, index and cahing ? will read more about this
+
+-Subscriber Count of a channel = Find all the document of that channel(basically a user) created and count 
+
+-Subscribed to Channels = find all the documents of a subscriber(obviously a user) with different channels
