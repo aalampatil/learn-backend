@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const likeSchema = new Schema(
   {
-     video: {
+    video: {
       type: Schema.Types.ObjectId,
       ref: "Video",
     },
@@ -10,16 +10,16 @@ const likeSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Comment",
     },
-    likedBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
     tweet: {
       type: Schema.Types.ObjectId,
       ref: "Tweet",
+    },
+    likedBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   { timestamps: true }
 );
 
-export const Like = model("Like", likeSchema)
+export const Like = model("Like", likeSchema);
